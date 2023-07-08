@@ -55,7 +55,7 @@ Wait for the attempted problems list to be fetched (it may take several seconds)
 
 Make a new mashup by specifying how many problems per rating.
 
-Now a `mashup.txt` file has been made containing the codes for the mashup problems (make a contest using them).
+Now a `mashup.txt` file has been made containing the codes for the mashup problems (make a new mashup using them).
 
 ## Dependencies
 
