@@ -21,9 +21,9 @@ except:
 def options():
     print()
     print("1. Make a new mashup.")
-    print(f"2. Update attempted problems list. (Slow) [last updated: {last_updated}]")
+    print(f"2. Update attempted problems list. (slow) [last updated: {last_updated}]")
     print("3. Update config.")
-    print("5. Quit.")
+    print("4. Quit.")
     print()
     return int(input("Enter operation number: "))
 
@@ -32,7 +32,7 @@ def choose_option():
         x = options()
         line()
 
-        if x not in range(1, 6):
+        if x not in range(1, 5):
             print("Please enter a valid number.")
             continue
 
@@ -75,6 +75,4 @@ while True:
     elif x == 3:
         configure()
     elif x == 4:
-        help()
-    elif x == 5:
         quit()

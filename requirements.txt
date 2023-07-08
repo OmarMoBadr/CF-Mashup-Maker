@@ -1,2 +1,2 @@
-codeforces_api
+CodeforcesApiPy
 alive_progress

@@ -6,7 +6,7 @@ def update_config():
     
     # -------------------------------
     print()
-    x = input(f"Mashup sorted by difficulty (cur: {data_helper.data.sorted_by_difficulty}) [Y/N]: ")
+    x = input(f"Mashup problems sorted by difficulty (cur: {data_helper.data.sorted_by_difficulty}) [Y/N]: ")
     
     if x.lower() == "y":
         data_helper.data_dict["sorted_by_difficulty"] = True
