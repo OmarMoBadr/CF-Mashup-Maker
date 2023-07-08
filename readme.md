@@ -23,10 +23,10 @@ Download and extract the repo or clone it using.
 git clone https://github.com/OmarMoBadr/CF-Mashup-Maker.git
 ```
 
-cd into the repo
+cd into the repo.
 
 ```
-cd cf_mashup_maker
+cd CF-Mashup-Maker
 ```
 
 Install the required modules.
@@ -35,7 +35,7 @@ Install the required modules.
 pip install -r requirements.txt
 ```
 
-run the tool
+run the tool.
 
 ```
 python cf_mashup_maker.py
@@ -45,9 +45,9 @@ python cf_mashup_maker.py
 
 Follow the instructions to configure the script:
 
-- `min problem rating`: min problem rating option when making the mashup.
-- `max problem rating`: max problem rating option when making the mashup.
-- `problems sorted by difficulty`: sorted in the output file.
+- `min problem rating` min problem rating option when making the mashup.
+- `max problem rating` max problem rating option when making the mashup.
+- `problems sorted by difficulty` sorted in the output file.
 
 After that, you can add users' handles to exclude all their attempted problems.
 
