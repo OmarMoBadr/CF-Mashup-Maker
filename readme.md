@@ -20,7 +20,7 @@ cf_mashup_maker, a simple tool written in Python that helps pick random **unatte
 Download and extract the repo or clone it using.
 
 ```
-git clone https://github.com/OmarMoBadr/cf_mashup_maker.git
+git clone https://github.com/OmarMoBadr/CF-Mashup-Maker.git
 ```
 
 cd into the repo
