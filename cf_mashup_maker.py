@@ -1,5 +1,5 @@
 import codeforces_api as cf
-import json, sys
+import json, sys, os
 from src.utils import *
 import src.data_helper as data_helper
 import src.config as config
@@ -16,10 +16,11 @@ try:
         solved = set(json_object["problems"])
         last_updated = json_object["last_updated"]
 
-    with open(f"data/{config_name}/exclude.json", "r") as f:
-        json_object = json.load(f)
+    if os.path.exists(f"data/{config_name}/exclude.json"):
+        with open(f"data/{config_name}/exclude.json", "r") as f:
+            json_object = json.load(f)
 
-        solved = solved.union(set(json_object["list"]))
+            solved = solved.union(set(json_object["list"]))
         
 except:
     solved = set()

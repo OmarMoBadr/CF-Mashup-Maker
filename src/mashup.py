@@ -30,8 +30,9 @@ def pick_problems(cf_api, solved):
         name, rating = problem.name, problem.rating
         code = f"{problem.contest_id}-{problem.index}"
         
-        min_id = 1200 # was 300
-        max_id = 1700
+        min_id = data_helper.data.min_contest_id
+        temp = data_helper.data.max_contest_id
+        max_id = temp if temp != -1 else int(1e8)
         if problem.contest_id <= min_id or problem.contest_id >= max_id or problem.contest_id in exclude:
             continue
 
