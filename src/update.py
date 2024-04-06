@@ -28,7 +28,7 @@ def update_solved_problems(cf_api):
             bar()
     print()
 
-    with open("data/solved.json", "w") as f:
+    with open(f"data/{data_helper.data.config_name}/solved.json", "w") as f:
         json.dump({"last_updated": datetime.datetime.now().strftime("%m/%d/%Y %H:%M:%S") ,"problems":list(solved)}, f, indent=2)
         print(f"Attempted problems was saved to {f.name}")
     

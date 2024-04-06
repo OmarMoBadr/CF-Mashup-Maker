@@ -1,5 +1,5 @@
 import codeforces_api as cf
-import json
+import json, sys
 from src.utils import *
 import src.data_helper as data_helper
 import src.config as config
@@ -7,15 +7,16 @@ import src.update as update
 import src.mashup as mashup
 
 cf_api = cf.CodeforcesApi()
+config_name = sys.argv[1] if len(sys.argv) > 1 else "default"
 
 try:
-    with open("data/solved.json", "r") as f:
+    with open(f"data/{config_name}/solved.json", "r") as f:
         json_object = json.load(f)
 
         solved = set(json_object["problems"])
         last_updated = json_object["last_updated"]
 
-    with open("data/exclude.json", "r") as f:
+    with open(f"data/{config_name}/exclude.json", "r") as f:
         json_object = json.load(f)
 
         solved = solved.union(set(json_object["list"]))
@@ -69,7 +70,7 @@ def first_run():
     configure()
     update_attempted()
 
-data_helper.load(first_run)
+data_helper.load(first_run, config_name)
 
 while True:
     x = choose_option()
