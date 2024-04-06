@@ -16,7 +16,7 @@ def update_solved_problems(cf_api):
     print()
     with alive_bar(len(data_helper.data.handles)) as bar:
         for i, handle in enumerate(data_helper.data.handles):
-            time.sleep(2) # "CF API may be requested at most 1 time per two seconds."
+            time.sleep(1) # "CF API may be requested at most 1 time per two seconds."
 
             # print(f"{i + 1}/{len(data_helper.data.handles)}")
             try:

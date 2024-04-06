@@ -14,6 +14,12 @@ try:
 
         solved = set(json_object["problems"])
         last_updated = json_object["last_updated"]
+
+    with open("data/exclude.json", "r") as f:
+        json_object = json.load(f)
+
+        solved = solved.union(set(json_object["list"]))
+        
 except:
     solved = set()
     last_updated = "Never"

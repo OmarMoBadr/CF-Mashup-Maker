@@ -3,6 +3,8 @@ from collections import defaultdict
 import src.data_helper as data_helper
 import random
 
+exclude = [1002, 683, 64, 1571, 188, 1001]
+
 def pick_problems(cf_api, solved):
     mashup = []
     problems = {}
@@ -27,7 +29,15 @@ def pick_problems(cf_api, solved):
     for problem in problemset["problems"]:
         name, rating = problem.name, problem.rating
         code = f"{problem.contest_id}-{problem.index}"
-            
+        
+        min_id = 1200 # was 300
+        max_id = 1700
+        if problem.contest_id <= min_id or problem.contest_id >= max_id or problem.contest_id in exclude:
+            continue
+
+        if "*special" in problem.tags:
+            continue
+
         if code not in solved and rating in problems.keys():
             new = Problem()
             new.name = name
