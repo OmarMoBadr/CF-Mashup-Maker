@@ -10,6 +10,24 @@ def pick_problems(cf_api, solved):
     problems = {}
     total = 0
 
+    included_tags = []
+    excluded_tags = []
+    
+    print("Enter included tags combined by OR (leave empty to ignore):")
+    while True:
+        tag = input(f"{len(included_tags) + 1}> ")
+        if tag == "": break
+        included_tags.append(tag)
+    
+    print()
+    print("Enter excluded tags (leave empty to ignore):")
+    while True:
+        tag = input(f"{len(excluded_tags) + 1}> ")
+        if tag == "": break
+        excluded_tags.append(tag)
+
+    line()
+
     for i in range(data_helper.data.min_problem_rating, data_helper.data.max_problem_rating + 1, 100):
         n = int(input(f"How many {i} rated problems: "))
         problems[i] = n
@@ -35,8 +53,11 @@ def pick_problems(cf_api, solved):
         max_id = temp if temp != -1 else int(1e8)
         if problem.contest_id <= min_id or problem.contest_id >= max_id or problem.contest_id in exclude:
             continue
-
-        if "*special" in problem.tags:
+        
+        if any(tag in problem.tags for tag in excluded_tags):
+            continue
+        
+        if len(included_tags) and not any(tag in problem.tags for tag in included_tags):
             continue
 
         if code not in solved and rating in problems.keys():
@@ -46,21 +67,26 @@ def pick_problems(cf_api, solved):
             new.code = code
             candidates[rating].append(new)
 
+    line()
     for rating, count in sorted(problems.items()):
         while (len(candidates[rating]) < count):
-            print(f"ERROR: there is no enough unsolved {rating} problems\n")
-            count = int(input(f"How many {i} rated problems (max: {len(candidates[rating])}): "))
+            print(f"ERROR: there is no enough unsolved {rating} problems.")
+            count = int(input(f"How many {rating} rated problems (max: {len(candidates[rating])}): "))
+            print()
         
         mashup.extend(random.sample(candidates[rating], count))
     
 
     if not data_helper.data.sorted_by_difficulty:
         random.shuffle(mashup)
-
-    line()
-
+    
+    out_link = input("Save as links? [Y/N]: ").lower() == "y"
     with open("mashup.txt", "w") as f:
-        f.write('\n'.join([x.code for x in mashup]))
+        link = "https://codeforces.com/problemset/problem/"
+        if out_link:
+            f.write('\n'.join([link + x.code.replace("-", "/") for x in mashup]))
+        else:
+            f.write('\n'.join([x.code for x in mashup]))
         print(f"Saved the mashup to {f.name}")
     
     return mashup
