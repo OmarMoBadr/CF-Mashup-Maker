@@ -47,7 +47,7 @@ def choose_option():
         return x
 
 def update_attempted():
-    global last_updated
+    global last_updated, solved
 
     solved = update.update_solved_problems(cf_api)
     last_updated = "Now"
